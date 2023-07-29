@@ -14,12 +14,9 @@ const fs = require('fs');
 (async () => {
     // クライアント情報を登録
 	const vox = new client('http://localhost:50021/');
-    // クエリクラス作成
-	const query = await vox.createQuery('テストなのだ！', 1);
 	try {
-        // 音声ファイル作成
-		const wav = await query.getSynthesis();
-		fs.writeFileSync('./test.wav', Buffer.from(wav));
+		// 音声データ取得
+		const wav = await vox.createQuery('テストなのだ！', 1, true);
 	}
 	catch (e){
 		console.error(e);

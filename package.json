@@ -19,7 +19,7 @@
     "url": "https://github.com/tam1192/node-voxclient/issues"
   },
   "homepage": "https://github.com/tam1192/node-voxclient#readme",
-  "dependencies": {
-    "eslint": "^8.45.0"
+  "devDependencies": {
+    "eslint": "^8.46.0"
   }
 }
