@@ -1,0 +1,25 @@
+{
+  "name": "voxclient",
+  "version": "1.0.0",
+  "description": "This is a module to connect to voicevox with nodejs.",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tam1192/node-voxclient.git"
+  },
+  "keywords": [
+    "voicevox"
+  ],
+  "author": "tam1192",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tam1192/node-voxclient/issues"
+  },
+  "homepage": "https://github.com/tam1192/node-voxclient#readme",
+  "dependencies": {
+    "eslint": "^8.45.0"
+  }
+}
