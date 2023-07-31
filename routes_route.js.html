@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: client/query.js</title>
+    <title>JSDoc: Source: routes/route.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: client/query.js</h1>
+    <h1 class="page-title">Source: routes/route.js</h1>
 
     
 
@@ -27,87 +27,31 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
-const routes = require('../routes/index');
-const headers = require('../headers/index');
 
-exports.Query = class {
-	/**
-	 * @member {Rest} rest
-	 */
-	#rest;
-
-	/**
-	 * @member {String} text
-	 */
-	text;
-
-	/**
-	 * @member {Number} speaker
-	 */
-	speaker;
-
-	/**
-	 * @member {String} query
-	 */
-	#query;
-
-	/**
-	 * @param {Rest} rest
-	 * @param {String} text
-	 * @param {Number} speaker
-	 */
-	constructor(rest, text, speaker) {
-		if(typeof text == 'string' ||
-			typeof speaker == 'number'){
-				this.#rest = rest;
-				this.text = text;
-				this.speaker = speaker;
-			}
+/**
+ * @class Management of PATH information.
+ * @extends URL
+ */
+module.exports = class extends URL{
+	constructor(path, parameter){
+		super('http://example.com/');
+		if(typeof path == 'string'){
+			this.pathname = path;
+		}
 		else {
+			throw new TypeError('path is not string.');
+		}
+
+		// parameter
+		if(typeof parameter == 'object'){
+			this.search = new URLSearchParams(parameter);
+		}
+		else if(parameter != undefined){
 			throw new TypeError('parameter is missing.');
 		}
 	}
-
-	/**
-	 * クエリを取得します。
-	 * @returns {Object} クエリ
-	 */
-	get = async () => {
-		try {
-			// できてないなら
-			if(this.#query == undefined){
-				const response = await this.#rest.post(routes.query({
-					text: this.text,
-					speaker: this.speaker,
-				}), headers.json());
-				this.#query = await response.json();
-			}
-			return this.#query;
-		}
-		catch(e) {
-			e.message = 'Error: getQuery did not succeed.';
-			throw e;
-		}
-	}
-
-	/**
-	 * 音声合成
-	 * @param {boolean} enable_interrogative_upspeak 疑問系のテキストが与えられたら語尾を自動調整する
-	 */
-	synthesis = async (enable_interrogative_upspeak) => {
-		try {
-			const response = await this.#rest.post(routes.synthesis({
-				speaker: this.speaker,
-				enable_interrogative_upspeak: enable_interrogative_upspeak ?? true,
-			}), headers.wav(), JSON.stringify(this.#query));
-			return await response.arrayBuffer();
-		}
-		catch(e) {
-			e.message = 'Error: Synthesis did not succeed.';
-			throw e;
-		}
-	}
-}</code></pre>
+}
+</code></pre>
         </article>
     </section>
 

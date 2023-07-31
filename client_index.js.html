@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: client/query.js</title>
+    <title>JSDoc: Source: client/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: client/query.js</h1>
+    <h1 class="page-title">Source: client/index.js</h1>
 
     
 
@@ -27,85 +27,85 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
-const routes = require('../routes/index');
-const headers = require('../headers/index');
 
-exports.Query = class {
+const Rest = require('../rest/index');
+const {Query} = require('./query');
+const {Speakerlist} = require('./speakerlist');
+const {Dict} = require('./dict');
+
+/**
+ * @class vox client class
+ */
+module.exports = class {
 	/**
 	 * @member {Rest} rest
 	 */
 	#rest;
 
 	/**
-	 * @member {String} text
+	 * @member {speakerlist} Speaker
 	 */
-	text;
+	#Speaker
 
 	/**
-	 * @member {Number} speaker
+	 * @member {dict} Dict
 	 */
-	speaker;
+	#Dict
 
 	/**
-	 * @member {String} query
+	 * @param {String} url
+	 * @param {Number} max 一度にアクセスする量を制限します。
 	 */
-	#query;
+	constructor(address, max) {
+		this.#rest = new Rest(address, max);
+	}
 
 	/**
-	 * @param {Rest} rest
+	 * create Query
 	 * @param {String} text
 	 * @param {Number} speaker
+	 * @return {Query} Queryクラスか、wavファイル
 	 */
-	constructor(rest, text, speaker) {
-		if(typeof text == 'string' ||
-			typeof speaker == 'number'){
-				this.#rest = rest;
-				this.text = text;
-				this.speaker = speaker;
-			}
-		else {
-			throw new TypeError('parameter is missing.');
-		}
+	async createQuery(text, speaker) {
+		const query_data = new Query(this.#rest, text, speaker);
+		await query_data.get();
+		return query_data;
 	}
 
 	/**
-	 * クエリを取得します。
-	 * @returns {Object} クエリ
+	 * create Voice
+	 * @param {String} text
+	 * @param {Number} speaker
+	 * @param {Boolean} enable_interrogative_upspeak 疑問系のテキストが与えられたら語尾を自動調整する
+	 * @returns {Promise&lt;ArrayBuffer>}
 	 */
-	get = async () => {
-		try {
-			// できてないなら
-			if(this.#query == undefined){
-				const response = await this.#rest.post(routes.query({
-					text: this.text,
-					speaker: this.speaker,
-				}), headers.json());
-				this.#query = await response.json();
-			}
-			return this.#query;
-		}
-		catch(e) {
-			e.message = 'Error: getQuery did not succeed.';
-			throw e;
-		}
+	async createVoice(text, speaker, enable_interrogative_upspeak) {
+		const q = await this.createQuery(text, speaker);
+		return await q.synthesis(enable_interrogative_upspeak);
 	}
 
 	/**
-	 * 音声合成
-	 * @param {boolean} enable_interrogative_upspeak 疑問系のテキストが与えられたら語尾を自動調整する
+	 * create Speaker list
 	 */
-	synthesis = async (enable_interrogative_upspeak) => {
-		try {
-			const response = await this.#rest.post(routes.synthesis({
-				speaker: this.speaker,
-				enable_interrogative_upspeak: enable_interrogative_upspeak ?? true,
-			}), headers.wav(), JSON.stringify(this.#query));
-			return await response.arrayBuffer();
+	async createSpeaker() {
+		// 一回のみ
+		if(this.#Speaker == undefined){
+			this.#Speaker = new Speakerlist(this.#rest);
+			await this.#Speaker.get();
 		}
-		catch(e) {
-			e.message = 'Error: Synthesis did not succeed.';
-			throw e;
+		return this.#Speaker;
+	}
+
+	/**
+	 * create Dict
+	 */
+	async createDict() {
+		// 一回のみ
+		if(this.#Dict == undefined){
+			this.#Dict = new Dict(this.#rest);
+			await this.#Dict.get();
 		}
+		return this.#Dict;
 	}
 }</code></pre>
         </article>
