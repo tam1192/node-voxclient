@@ -14,7 +14,7 @@
     "voicevox"
   ],
   "author": "tam1192",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/tam1192/node-voxclient/issues"
   },
