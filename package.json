@@ -1,6 +1,6 @@
 {
   "name": "voxclient",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "This is a module to connect to voicevox with nodejs.",
   "main": "./lib/index.js",
   "scripts": {
