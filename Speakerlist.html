@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Query</title>
+    <title>JSDoc: Class: Speakerlist</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Query</h1>
+    <h1 class="page-title">Class: Speakerlist</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Query<span class="signature">(rest, text, speaker)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Speakerlist<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">query class</div>
+            <div class="class-description">The speakerlist class has the speaker's id, name, and style information.</div>
         
     
 </header>
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="Query"><span class="type-signature"></span>new Query<span class="signature">(rest, text, speaker)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Speakerlist"><span class="type-signature"></span>new Speakerlist<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -58,101 +58,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>rest</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Rest.html">Rest</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>text</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>speaker</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -188,7 +93,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="class_client_query.js.html">class/client/query.js</a>, <a href="class_client_query.js.html#line8">line 8</a>
+        <a href="class_client_speakerlist.js.html">class/client/speakerlist.js</a>, <a href="class_client_speakerlist.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -244,7 +149,7 @@
 
 
 <div class="description">
-    クエリを取得します。
+    Get speakerlist from the server.
 </div>
 
 
@@ -282,7 +187,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="class_client_query.js.html">class/client/query.js</a>, <a href="class_client_query.js.html#line54">line 54</a>
+        <a href="class_client_speakerlist.js.html">class/client/speakerlist.js</a>, <a href="class_client_speakerlist.js.html#line29">line 29</a>
     </li></ul></dd>
     
 
@@ -300,13 +205,13 @@
 
         
             
-<h4 class="name" id="synthesis"><span class="type-signature"></span>synthesis<span class="type-signature"></span></h4>
+<h4 class="name" id="listSpeakerStyle"><span class="type-signature"></span>listSpeakerStyle<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    音声合成
+    Get speaker style by list.
 </div>
 
 
@@ -344,7 +249,131 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="class_client_query.js.html">class/client/query.js</a>, <a href="class_client_query.js.html#line76">line 76</a>
+        <a href="class_client_speakerlist.js.html">class/client/speakerlist.js</a>, <a href="class_client_speakerlist.js.html#line60">line 60</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="searchId"><span class="type-signature"></span>searchId<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Search by speaker and style.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="class_client_speakerlist.js.html">class/client/speakerlist.js</a>, <a href="class_client_speakerlist.js.html#line80">line 80</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="searchSpeaker"><span class="type-signature"></span>searchSpeaker<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Search by id.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="class_client_speakerlist.js.html">class/client/speakerlist.js</a>, <a href="class_client_speakerlist.js.html#line96">line 96</a>
     </li></ul></dd>
     
 
