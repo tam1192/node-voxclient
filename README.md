@@ -4,6 +4,8 @@ This is a module to connect to voicevox with nodejs.
 nodejsでvoicevoxに接続するためのモジュールです。（二番煎じ）
 自分の学習用に作りました。
 
+[stream](https://github.com/tam1192/node-voxclient/tree/stream)を使うタイプ
+
 ## 内容物
 ### client
 基本的な関数群です。
